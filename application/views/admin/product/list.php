@@ -6,6 +6,24 @@
 </head>
 
 <body class="sb-nav-fixed">
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+					<a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<?php $this->load->view("admin/_partials/navbar.php") ?>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
@@ -84,9 +102,8 @@
 											</td>
 											<td width="250">
 												<a href="<?php echo site_url('admin/products/edit/' . $product->id) ?>"
-													class="btn btn-small"><i class="fas fa-edit"></i></a>
-												<a onclick="deleteConfirm('<?php echo site_url('admin/products/delete/' . $product->id) ?>')"
-													href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
+													class="btn btn-small text-primary"><i class="fas fa-edit"></i></a>
+												<a class="btn btn-small text-danger" href="<?php echo site_url('admin/products/delete/' . $product->id) ?>" title="delete" class="delete" onclick="return confirm('Are you sure you want to delete this item')"><i class="fas fa-trash"></i> </a>
 											</td>
 
 										</tr>
@@ -103,7 +120,17 @@
 			</footer>
 		</div>
 	</div>
+
+
+	<?php $this->load->view("admin/_partials/js.php") ?>
+	<?php $this->load->view("admin/_partials/modal.php") ?>
+	<script>
+		function deleteConfirm(url) {
+			$('#btn-delete').attr('href', url);
+			$('#deleteModal').modal();
+		}
+	</script>
 </body>
-<?php $this->load->view("admin/_partials/js.php") ?>
+
 
 </html>

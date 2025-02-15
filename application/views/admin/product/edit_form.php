@@ -107,5 +107,7 @@
 	</div>
 </body>
 <?php $this->load->view("admin/_partials/js.php") ?>
+<?php $this->load->view("admin/_partials/modal.php") ?>
+
 
 </html>
