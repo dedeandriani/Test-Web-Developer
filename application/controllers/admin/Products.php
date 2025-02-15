@@ -26,7 +26,7 @@ class Products extends CI_Controller
 		if ($validation->run()) {
 			$product->save();
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
-			return redirect(site_url('admin/products'));
+			return redirect(site_url(''));
 		}
 
 		$this->load->view("admin/product/new_form");
@@ -43,7 +43,7 @@ class Products extends CI_Controller
 		if ($validation->run()) {
 			$product->update();
 			$this->session->set_flashdata('success', 'Berhasil Diupdate');
-			return redirect(site_url('admin/products'));
+			return redirect(site_url(''));
 		}
 
 		$data["product"] = $product->getById($id);
@@ -57,7 +57,7 @@ class Products extends CI_Controller
 
 		if ($this->product_model->delete($id)) {
 			$this->session->set_flashdata('success', 'Berhasil dihapus');
-			redirect(site_url('admin/products'));
+			redirect(site_url(''));
 		}
 	}
 }

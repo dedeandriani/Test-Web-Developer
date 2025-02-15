@@ -11,10 +11,6 @@
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<?php $this->load->view("admin/_partials/sidebar.php") ?>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
-				</div>
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
@@ -69,11 +65,11 @@
 										</div>
 
 										<div class="form-group">
-											<label for="price">Is Sell</label>
+											<label for="price">Status Product</label>
 											<select class="form-control <?php echo form_error('is_sell') ? 'is-invalid' : '' ?>" name="is_sell">
-												<option value="<?php echo $product->is_sell ?>"><?php echo $product->is_sell == 1 ? 'Yes' : 'No' ?></option">
-												<option value="1">Yes</option>
-												<option value="0">No</option>
+												<option value="<?php echo $product->is_sell ?>"><?php echo $product->is_sell == 1 ? 'Is Sell' : 'Not For Sell' ?></option">
+												<option value="1">Is Sell</option>
+												<option value="0">Not For Sell</option>
 											</select>
 											<div class="invalid-feedback">
 												<?php echo form_error('is_sell') ?>
@@ -81,6 +77,9 @@
 										</div>
 										<br>
 										<input class="btn btn-success" type="submit" name="btn" value="Update" />
+										<button onclick="deleteProduct('<?php echo $product->id ?>')" class="btn btn-danger" type="reset">Delete</button>
+										<button onclick="window.history.go(-1); return false;" class="btn btn-secondary" type="reset">Cancel</button>
+
 									</form>
 
 								</div>
@@ -105,6 +104,29 @@
 			</footer>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function deleteProduct(id) {
+			new swal({
+				title: "Are you sure?",
+				text: "Once deleted, you will not be able to recover this Product!",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delete it!"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						title: "Deleted!",
+						text: "Your file has been deleted.",
+						icon: "success"
+					});
+					window.location = "<?php echo site_url('admin/products/delete/') ?>" + id
+
+				}
+			});
+		}
+	</script>
 </body>
 <?php $this->load->view("admin/_partials/js.php") ?>
 <?php $this->load->view("admin/_partials/modal.php") ?>

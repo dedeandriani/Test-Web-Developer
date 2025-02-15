@@ -11,10 +11,6 @@
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<?php $this->load->view("admin/_partials/sidebar.php") ?>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
-				</div>
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
@@ -64,11 +60,12 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="stock">Is Sell*</label>
+											<label for="stock">Status Product*</label>
 											<select class="form-control <?php echo form_error('is_sell') ? 'is-invalid' : '' ?>"
 												name="is_sell">
-												<option value="1">Yes</option>
-												<option value="0">No</option>
+												<option value="">Choose</option>
+												<option value="1">Is Sell</option>
+												<option value="0">Not For Sell</option>
 											</select>
 											<div class="invalid-feedback">
 												<?php echo form_error('is_sell') ?>
@@ -77,6 +74,7 @@
 										<br>
 										<div class="form-group">
 											<input class="btn btn-success" type="submit" name="btn" value="Save" />
+											<button type="reset" onclick="batal()" class="btn btn-secondary">Cancel</button>
 
 										</div>
 
@@ -97,6 +95,12 @@
 			</footer>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function batal() {
+			window.location.href = "<?php echo site_url('') ?>";
+		}
+	</script>
 </body>
 <?php $this->load->view("admin/_partials/js.php") ?>
 

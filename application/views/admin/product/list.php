@@ -6,33 +6,11 @@
 </head>
 
 <body class="sb-nav-fixed">
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-					<a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<?php $this->load->view("admin/_partials/navbar.php") ?>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<?php $this->load->view("admin/_partials/sidebar.php") ?>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
-				</div>
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
@@ -54,14 +32,30 @@
 							<table id="datatablesSimple">
 								<thead>
 									<tr>
-										<th>No</th>
-										<th>Name</th>
-										<th>Price</th>
-										<th>Stock</th>
-										<th>Is Sell</th>
-										<th>Created At</th>
-										<th>Updated At</th>
-										<th width="150">Actions</th>
+										<th>
+											<center>No</center>
+										</th>
+										<th>
+											<center>Name</center>
+										</th>
+										<th>
+											<center>Price</center>
+										</th>
+										<th>
+											<center>Stock</center>
+										</th>
+										<th>
+											<center>Is Sell</center>
+										</th>
+										<th>
+											<center>Created At</center>
+										</th>
+										<th>
+											<center>Updated At</center>
+										</th>
+										<th>
+											<center>Actions</center>
+										</th>
 									</tr>
 								</thead>
 
@@ -88,9 +82,9 @@
 											<td>
 												<?php
 												if ($product->is_sell == 1) {
-													echo "<span class='badge bg-success'>Di Jual</span>";
+													echo "<span class='badge bg-success'>Sell</span>";
 												} else {
-													echo "<span class='badge bg-danger'>Tidak Di Jual</span>";
+													echo "<span class='badge bg-danger'>Not For Sell</span>";
 												}
 												?>
 											</td>
@@ -103,7 +97,7 @@
 											<td width="250">
 												<a href="<?php echo site_url('admin/products/edit/' . $product->id) ?>"
 													class="btn btn-small text-primary"><i class="fas fa-edit"></i></a>
-												<a class="btn btn-small text-danger" href="<?php echo site_url('admin/products/delete/' . $product->id) ?>" title="delete" class="delete" onclick="return confirm('Are you sure you want to delete this item')"><i class="fas fa-trash"></i> </a>
+												<a class="btn btn-small text-danger" onclick="deleteProduct('<?php echo $product->id ?>')" title="delete" class="delete" onclick="return confirm('Are you sure you want to delete this item')"><i class="fas fa-trash"></i> </a>
 											</td>
 
 										</tr>
@@ -124,10 +118,27 @@
 
 	<?php $this->load->view("admin/_partials/js.php") ?>
 	<?php $this->load->view("admin/_partials/modal.php") ?>
-	<script>
-		function deleteConfirm(url) {
-			$('#btn-delete').attr('href', url);
-			$('#deleteModal').modal();
+	<script type="text/javascript">
+		function deleteProduct(id) {
+			new swal({
+				title: "Are you sure?",
+				text: "Once deleted, you will not be able to recover this Product!",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delete it!"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						title: "Deleted!",
+						text: "Your file has been deleted.",
+						icon: "success"
+					});
+					window.location = "<?php echo site_url('admin/products/delete/') ?>" + id
+
+				}
+			});
 		}
 	</script>
 </body>

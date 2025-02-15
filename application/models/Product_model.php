@@ -37,14 +37,17 @@ class Product_model extends CI_Model
 			[
 				'field' => 'is_sell',
 				'label' => 'is_sell',
-				'rules' => 'numeric'
+				'rules' => 'required'
 			],
 		];
 	}
 
 	public function getAll()
 	{
-		return $this->db->get($this->_table)->result();
+		$this->db->from('products');
+		$this->db->order_by("name asc,price asc,is_sell asc");
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function getById($id)
