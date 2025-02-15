@@ -40,7 +40,7 @@
 							</div>
 						</nav>
 					</div>
-					<a class="nav-link" href="<?php echo site_url('admin/users') ?>">
+					<a class="nav-link" href="<?php echo site_url('admin/products') ?>">
 						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 						Produk
 					</a>
