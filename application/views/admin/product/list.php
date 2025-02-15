@@ -43,7 +43,7 @@
 										<th>Is Sell</th>
 										<th>Created At</th>
 										<th>Updated At</th>
-										<th>Action</th>
+										<th width="150">Actions</th>
 									</tr>
 								</thead>
 
@@ -84,9 +84,9 @@
 											</td>
 											<td width="250">
 												<a href="<?php echo site_url('admin/products/edit/' . $product->id) ?>"
-													class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+													class="btn btn-small"><i class="fas fa-edit"></i></a>
 												<a onclick="deleteConfirm('<?php echo site_url('admin/products/delete/' . $product->id) ?>')"
-													href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+													href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
 											</td>
 
 										</tr>

@@ -42,12 +42,12 @@ class Products extends CI_Controller
 
 		if ($validation->run()) {
 			$product->update();
-			$this->session->set_flashdata('success', 'Berhasil disimpan');
+			$this->session->set_flashdata('success', 'Berhasil Diupdate');
+			return redirect(site_url('admin/products'));
 		}
 
 		$data["product"] = $product->getById($id);
 		if (!$data["product"]) show_404();
-
 		$this->load->view("admin/product/edit_form", $data);
 	}
 

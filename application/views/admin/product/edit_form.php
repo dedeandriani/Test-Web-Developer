@@ -38,8 +38,6 @@
 								<div class="card-body">
 
 									<form action="" method="post" enctype="multipart/form-data">
-										<!-- Note: atribut action dikosongkan, artinya action-nya akan diproses 
-							oleh controller tempat view ini digunakan. Yakni index.php/admin/products/edit/ID --->
 
 										<input type="hidden" name="id" value="<?php echo $product->id ?>" />
 
@@ -60,8 +58,29 @@
 												<?php echo form_error('price') ?>
 											</div>
 										</div>
+
+										<div class="form-group">
+											<label for="price">Stock</label>
+											<input class="form-control <?php echo form_error('stock') ? 'is-invalid' : '' ?>"
+												type="number" name="stock" min="0" placeholder="Product stock" value="<?php echo $product->stock ?>" />
+											<div class="invalid-feedback">
+												<?php echo form_error('stock') ?>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="price">Is Sell</label>
+											<select class="form-control <?php echo form_error('is_sell') ? 'is-invalid' : '' ?>" name="is_sell">
+												<option value="<?php echo $product->is_sell ?>"><?php echo $product->is_sell == 1 ? 'Yes' : 'No' ?></option">
+												<option value="1">Yes</option>
+												<option value="0">No</option>
+											</select>
+											<div class="invalid-feedback">
+												<?php echo form_error('is_sell') ?>
+											</div>
+										</div>
 										<br>
-										<input class="btn btn-success" type="submit" name="btn" value="Save" />
+										<input class="btn btn-success" type="submit" name="btn" value="Update" />
 									</form>
 
 								</div>

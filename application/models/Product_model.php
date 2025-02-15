@@ -24,13 +24,14 @@ class Product_model extends CI_Model
 			[
 				'field' => 'price',
 				'label' => 'Price',
-				'rules' => 'numeric'
+				'rules' => 'required'
+
 			],
 
 			[
 				'field' => 'stock',
 				'label' => 'stock',
-				'rules' => 'numeric'
+				'rules' => 'required'
 			],
 
 			[
@@ -64,6 +65,7 @@ class Product_model extends CI_Model
 	public function update()
 	{
 		$post = $this->input->post();
+		$this->id = $post["id"];
 		$this->name = $post["name"];
 		$this->price = $post["price"];
 		$this->stock = $post["stock"];
